@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,10 +13,31 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const title =
+  "KI im Saalekreis e.V. | Gemeinnützige KI-Unterstützung für den Mittelstand";
+const description =
+  "KI im Saalekreis e.V. (in Gründung) bringt KMU im Saalekreis und der Region Halle-Leipzig DSGVO-konforme AI Voice Agents, Corporate LLMs & praktisches KI-Wissen – gemeinnützig, persönlich, lokal.";
+
 export const metadata: Metadata = {
-  title: "KI im Saalekreis e.V. | Gemeinnützige KI-Unterstützung für den Mittelstand",
-  description:
-    "KI im Saalekreis e.V. (in Gründung) bringt KMU im Saalekreis und der Region Halle-Leipzig DSGVO-konforme AI Voice Agents, Corporate LLMs & praktisches KI-Wissen – gemeinnützig, persönlich, lokal.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: title,
+    template: "%s | KI im Saalekreis e.V.",
+  },
+  description,
+  openGraph: {
+    title,
+    description,
+    url: SITE_URL,
+    siteName: "KI im Saalekreis e.V.",
+    locale: "de_DE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title,
+    description,
+  },
 };
 
 export default function RootLayout({
